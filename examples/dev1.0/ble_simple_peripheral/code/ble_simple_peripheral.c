@@ -312,6 +312,11 @@ void timer_refresh_fun(void *arg)
 	 os_timer_start(&timer_refresh,400,1);
 }
 
+/**
+ * @brief timer0 中断处理函数
+ * 
+ */
+#if 0
 __attribute__((section("ram_code"))) void timer0_isr_ram(void)
 {
    // uint8_t code_1527;
@@ -464,6 +469,7 @@ __attribute__((section("ram_code"))) void timer0_isr_ram(void)
 	
 
 }
+#endif
 
 /*********************************************************************
  * @fn      simple_peripheral_init
