@@ -230,7 +230,8 @@ const gatt_attribute_t simple_profile_att_table[SP_IDX_NB] =
         // Characteristic 5 Value
         [SP_IDX_CHAR5_VALUE]                =   {
                                                     { UUID_SIZE_2, UUID16_ARR(SP_CHAR5_UUID) },                 /* UUID */
-                                                    GATT_PROP_AUTHEN_WRITE | GATT_PROP_AUTHEN_READ,             /* Permissions */
+ //                                                   GATT_PROP_AUTHEN_WRITE | GATT_PROP_AUTHEN_READ,             /* Permissions */
+                                                    GATT_PROP_READ | GATT_PROP_WRITE,                           /* Permissions */
                                                     SP_CHAR5_VALUE_LEN,                                         /* Max size of the value */
                                                     NULL,                                                       /* Value of the attribute */    /* Can assign a buffer here, or can be assigned in the application by user */
                                                 },
@@ -291,7 +292,7 @@ static void sp_gatt_read_cb(uint8_t *p_read, uint16_t *len, uint16_t att_idx,uin
   
         case SP_IDX_CHAR5_VALUE:
             for (int i = 0; i < SP_CHAR5_VALUE_LEN; i++)
-                sp_char5_value[i] = sp_char3_value[0] + i + 1;
+                sp_char5_value[i] = sp_char5_value[0] + i + 1;
             memcpy(p_read, sp_char5_value, SP_CHAR5_VALUE_LEN);
            *len = SP_CHAR5_VALUE_LEN;
         break;
@@ -392,7 +393,8 @@ void test_gatt_notify(uint8_t conidx,uint8_t test)
 					uint8_t show_string[30]={0};
 	        ntf.p_data = (uint8_t *)show_string;
 				ntf.data_len = sizeof(show_string);
-	      sprintf((char *)show_string,"Speed: %u",(char)test);
+        co_printf("Speed:%d\r\n", test);
+	    //   sprintf((char *)show_string,"Speed: %u",(char)test);
         gatt_notification(ntf); 
 }
 

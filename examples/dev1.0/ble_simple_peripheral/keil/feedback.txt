@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Wed Jul 06 12:00:19 2022
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Jul 07 10:53:56 2022
 ;VERSION 0.2
 ;FILE adpcm_ima.o
 ;FILE adpcm_ms.o
@@ -894,7 +894,6 @@ system_prevent_sleep_set <= USED 0
 system_sleep_enable <= USED 0
 val_to_str <= USED 0
 ;FILE tongxin.o
-UartRead <= USED 0
 __asm___9_tongxin_c_4354e8d7____REV16 <= USED 0
 __asm___9_tongxin_c_4354e8d7____REVSH <= USED 0
 __asm___9_tongxin_c_4354e8d7____RRX <= USED 0
