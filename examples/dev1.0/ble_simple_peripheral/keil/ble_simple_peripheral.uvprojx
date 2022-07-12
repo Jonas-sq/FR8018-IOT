@@ -408,6 +408,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\components\modules\button\button.c</FilePath>
             </File>
+            <File>
+              <FileName>jphardware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\jphardware.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -649,5 +654,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>ble_simple_peripheral</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

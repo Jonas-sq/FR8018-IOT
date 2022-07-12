@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Jul 07 10:53:56 2022
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Tue Jul 12 09:46:06 2022
 ;VERSION 0.2
 ;FILE adpcm_ima.o
 ;FILE adpcm_ms.o
@@ -244,6 +244,10 @@ gyroscope_i2c_init <= USED 0
 gyroscope_timer_init <= USED 0
 gyroscope_timer_loop <= USED 0
 start_gyroscope_timer <= USED 0
+;FILE jphardware.o
+__asm___12_jphardware_c_1a009343____REV16 <= USED 0
+__asm___12_jphardware_c_1a009343____REVSH <= USED 0
+__asm___12_jphardware_c_1a009343____RRX <= USED 0
 ;FILE jump_table.o
 __asm___12_jump_table_c_5f817404____REV16 <= USED 0
 __asm___12_jump_table_c_5f817404____REVSH <= USED 0
@@ -894,9 +898,11 @@ system_prevent_sleep_set <= USED 0
 system_sleep_enable <= USED 0
 val_to_str <= USED 0
 ;FILE tongxin.o
+UartDriver <= USED 0
 __asm___9_tongxin_c_4354e8d7____REV16 <= USED 0
 __asm___9_tongxin_c_4354e8d7____REVSH <= USED 0
 __asm___9_tongxin_c_4354e8d7____RRX <= USED 0
+tongxin_task_init <= USED 0
 ;FILE user_bond_manage.o
 ble_bond_addr_check_result <= USED 0
 ble_bond_clr_info <= USED 0

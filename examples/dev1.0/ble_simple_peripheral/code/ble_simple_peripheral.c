@@ -34,6 +34,7 @@
 
 #include "driver_uart.h"
 #include "tongxin.h"
+#include "jphardware.h"
 
 #define PB_ENABLE      gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_4) )
 #define PB_DISABLE     gpio_portb_write(gpio_portb_read() & ~(1<<GPIO_BIT_4) )
@@ -51,6 +52,8 @@ unsigned int Recv_Data_Buf;
 unsigned int Rf_Data[3];
 unsigned int Rf_Control_Data;
 uint8_t laba;
+
+extern unsigned char showsudu;
 
 
 //uint8_t test[30]={0xAA,0xFC,0x85,0x87,0x058,0x09,0x01,0x00};
@@ -288,7 +291,7 @@ void timer_refresh_fun(void *arg)
 	unsigned int temp;
   unsigned char sudu[2];
 	 uint8_t test[]={0xaa,0xfc,0x85,0x86,0x56,0x13,0x02,0x47,0x0a,0x0d};
-   uint8_t test1[]={0xaa,0xfc,0x85,0x87,0x58,0x09,0x01,0x00,0x50,0x0a,0x0d};
+   uint8_t yibiaosudu[]={0xaa,0xfc,0x85,0x87,0x58,0x09,0x01,0x00,0x50,0x0a,0x0d};
 	 gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_5) );                   //1  RS485EN=1 使能
 	 uart_write(UART0,test,10);
 	 co_delay_100us(100);
@@ -297,18 +300,36 @@ void timer_refresh_fun(void *arg)
    if (cmdArrived) //有命令到达时，读取处理该命令
     { 
 
-				len = UartRead(buf, sizeof(buf));
-				temp = buf[7]*256 + buf[8];
-				sudu[0] = (unsigned char )(temp * 0.01);
-				gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_5) );        //1  
-			  test1[7] = sudu[0];
-			  test1[8] = GetYH(test1,11);
-				co_delay_100us(300);
-				uart_write(UART0,test1,11);
-				cmdArrived = 0;
-	 	 	 	 test_gatt_notify(sp_conidx,test1[7]);
+		len = UartRead(buf, sizeof(buf));
+		temp = buf[7]*256 + buf[8];
+		sudu[0] = (unsigned char )(temp * 0.01);
+		gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_5) );        //1  
+		yibiaosudu[7] = sudu[0];
+		yibiaosudu[8] = GetYH(yibiaosudu,11);
+		co_delay_100us(300);
+		uart_write(UART0,yibiaosudu,11);
+		cmdArrived = 0;
+			test_gatt_notify(sp_conidx,yibiaosudu[7]);
+	}
+	if(BLE_cmd)
+	{
+		if(showsudu == 0x20)
+		{
+			GPIO_SetBits(GPIO_B, GPIO_BIT_3);
+			test_gatt_notify(sp_conidx,yibiaosudu[7]);
 		}
-
+		else if(showsudu == 0x30)
+		{
+			GPIO_ResetBits(GPIO_B, GPIO_BIT_3);
+		}
+		gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_5) );        //1  
+		yibiaosudu[7] = showsudu;
+		yibiaosudu[8] = GetYH(yibiaosudu,11);
+		co_delay_100us(300);
+		uart_write(UART0,yibiaosudu,11);
+		BLE_cmd = 0;
+	}
+	
 	 os_timer_start(&timer_refresh,400,1);
 }
 

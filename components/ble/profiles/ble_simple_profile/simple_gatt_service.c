@@ -15,7 +15,7 @@
 #include "gap_api.h"
 #include "gatt_api.h"
 #include "gatt_sig_uuid.h"
-
+#include "tongxin.h"
 #include "simple_gatt_service.h"
 #include "ble_simple_peripheral.h"
 
@@ -326,6 +326,7 @@ static void sp_gatt_write_cb(uint8_t *write_buf, uint16_t len, uint16_t att_idx)
 	for (int i = 0; i < len; i++)
     {
 		co_printf("Write request: len: %d, 0x%x \r\n", len, write_buf[i]);
+        showsudu = write_buf[i];
         if (att_idx == SP_IDX_CHAR1_VALUE)
             memcpy(sp_char1_value, write_buf, len);
         
@@ -374,6 +375,8 @@ static uint16_t sp_gatt_msg_handler(gatt_msg_t *p_msg)
         
         case GATTC_MSG_WRITE_REQ:
             sp_gatt_write_cb((uint8_t*)(p_msg->param.msg.p_msg_data), (p_msg->param.msg.msg_len), p_msg->att_idx);
+            //showsudu = p_msg->param.msg.p_msg_data;
+            BLE_cmd = 1;
             break;
 							
         default:

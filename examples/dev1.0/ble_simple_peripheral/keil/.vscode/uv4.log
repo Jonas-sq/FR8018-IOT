@@ -44,4 +44,4 @@ JTAG speed: 4000 kHz
 Erase Done.Programming Done.* JLink Info: Reset: Halt core after reset via DEMCR.VC_CORERESET.
 * JLink Info: Reset: Reset device via AIRCR.SYSRESETREQ.
 Application running ...
-Flash Load finished at 10:54:20
+Flash Load finished at 09:46:27

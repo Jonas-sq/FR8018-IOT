@@ -1,0 +1,13 @@
+.\objects\jphardware.o: jphardware.c
+.\objects\jphardware.o: jphardware.h
+.\objects\jphardware.o: ..\..\..\..\components\driver\include\driver_iomux.h
+.\objects\jphardware.o: ..\..\..\..\components\driver\include\driver_gpio.h
+.\objects\jphardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\jphardware.o: ..\..\..\..\components\driver\include\driver_plf.h
+.\objects\jphardware.o: ..\..\..\..\components\modules\platform\include\compiler.h
+.\objects\jphardware.o: ..\..\..\..\components\modules\platform\include\core_cm3.h
+.\objects\jphardware.o: ..\..\..\..\components\modules\platform\include\cmsis_compiler.h
+.\objects\jphardware.o: ..\..\..\..\components\modules\platform\include\cmsis_armcc.h
+.\objects\jphardware.o: ..\..\..\..\components\modules\platform\include\ll.h
+.\objects\jphardware.o: ..\..\..\..\components\driver\include\driver_system.h
+.\objects\jphardware.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

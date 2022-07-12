@@ -42,3 +42,4 @@
 .\objects\ble_simple_peripheral.o: ..\..\..\..\components\driver\include\driver_uart.h
 .\objects\ble_simple_peripheral.o: ..\keil\tongxin.h
 .\objects\ble_simple_peripheral.o: ..\..\..\..\components\modules\os\include\os_task.h
+.\objects\ble_simple_peripheral.o: ..\keil\jphardware.h

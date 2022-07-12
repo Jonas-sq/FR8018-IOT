@@ -46,3 +46,4 @@
 .\objects\proj_main.o: ..\..\..\..\components\driver\include\driver_codec.h
 .\objects\proj_main.o: ..\..\..\..\components\driver\include\driver_timer.h
 .\objects\proj_main.o: ..\keil\tongxin.h
+.\objects\proj_main.o: ..\keil\jphardware.h

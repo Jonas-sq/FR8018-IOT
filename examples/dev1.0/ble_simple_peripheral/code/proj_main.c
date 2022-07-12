@@ -46,6 +46,7 @@
 #include "driver_timer.h"
 
 #include "tongxin.h"
+#include "jphardware.h"
 
 const struct jump_table_version_t _jump_table_version __attribute__((section("jump_table_3"))) = 
 {

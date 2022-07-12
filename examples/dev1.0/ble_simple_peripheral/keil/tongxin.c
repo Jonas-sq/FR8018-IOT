@@ -21,6 +21,7 @@ uint16_t tongxin_task_id;
 
 static volatile uint16_t cntRxd = 0;
 uint8_t cmdArrived = 0; 
+uint8_t BLE_cmd = 0;
 static uint8_t bufRxd[30];
 uint16_t tongxin_uart_task_id;
 
@@ -70,10 +71,9 @@ void UartRxMonitor(unsigned char ms)  //串口接收监控函数
 
    uint8_t test1[]={0xaa,0xfc,0x85,0x87,0x58,0x09,0x01,0x00,0x50,0x0a,0x0d};
 	
-	
     static unsigned char cntbkp = 0;
     static unsigned char idletmr = 0;
-//uint8_t test[5]={0x01,0x02,0x03,0x04,0x05};
+    //uint8_t test[5]={0x01,0x02,0x03,0x04,0x05};
     if (cntRxd > 0)  //接收计数器大于零时，监控总线空闲时间
     {
         if (cntbkp != cntRxd)  //接收计数器改变，即刚接收到数据时，清零空闲计时
@@ -141,8 +141,8 @@ __attribute__((section("ram_code"))) void uart0_isr_ram(void)
 
 
 
-//void UartDriver()
-//{
+void UartDriver()
+{
 //	  unsigned char len;
 //	  unsigned char data_len;
 //	  unsigned char crc;
@@ -180,33 +180,32 @@ __attribute__((section("ram_code"))) void uart0_isr_ram(void)
 //		}
 //		co_delay_100us(1000);
 //		gpio_portb_write(gpio_portb_read() 	& ~ (1<<GPIO_BIT_5) );//0
-//}
+}
 
 
-//static int tongxin_task_func(os_event_t *param)
-//{
-//		switch(param->event_id)
-//	{
-//		case 2:
-//		{
-//					gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_5) );//1
-//					UartDriver();
-////			 //co_printf("Task test!\r\n");
-////         uint8_t test[5]={0x01,0x02,0x03,0x04,0x06};	
-////				 		  
-////	       			
-//		}
-//		break;
-//		
-//	}
-//		
-//	return EVT_CONSUMED;
-//	
-//}
+static int tongxin_task_func(os_event_t *param)
+{
+	switch(param->event_id)
+	{
+		case 2:
+		{
+					gpio_portb_write(gpio_portb_read() | (1<<GPIO_BIT_5) );     //485 发送使能
+					UartDriver();
+//			 //co_printf("Task test!\r\n");
+//         uint8_t test[5]={0x01,0x02,0x03,0x04,0x06};	
 
-//void  tongxin_task_init(void)
-//{ 
-// tongxin_task_id = os_task_create(tongxin_task_func);
-//}
+		}
+		break;
+		
+	}
+		
+	return EVT_CONSUMED;
+	
+}
+
+void  tongxin_task_init(void)
+{ 
+    tongxin_task_id = os_task_create(tongxin_task_func);
+}
 
 
